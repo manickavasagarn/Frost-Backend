@@ -36,7 +36,7 @@ exports.waitingUpdate = async (req, res) => {
           });
           delete sendData.PASSWORD;
           res.status(200).send(sendData);
-        } else res.status(400).json({ message: "User not found" });
+        } else res.status(200).send([]);
       }
     }
   );
@@ -78,7 +78,7 @@ exports.acceptUpdate = async (req, res) => {
                     console.log(error);
                     res.status(500).json({ message: "Something went wrong" });
                   } else {
-                    res.status(400).json({ message: "Update Accepted" });
+                    res.status(200).json({ message: "Update Accepted" });
                   }
                 }
               );
@@ -155,7 +155,7 @@ exports.userCreation = async (req, res) => {
   );
 };
 
-exports.rejectUpdate = async (req, res) => {
+exports.rejectionUpdate = async (req, res) => {
   connection.query(
     "SELECT a.*,b.MAIL FROM update_table as a join credentials as b on a.USER_ID=b.ID where a.ID = ?;",
     [req.body.ID],
@@ -174,7 +174,7 @@ exports.rejectUpdate = async (req, res) => {
               console.log(error);
               res.status(500).json({ message: "Something went wrong" });
             } else {
-              res.status(400).json({ message: "Update Rejected" });
+              res.status(200).json({ message: "Update Rejected" });
             }
           }
         );

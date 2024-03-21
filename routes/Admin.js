@@ -15,6 +15,7 @@ const isAdmin = function (req, res, next) {
 router.get('/allUsers',isAdmin,AdminModule.users)
 router.get('/waitingUpdate',isAdmin,AdminModule.waitingUpdate)
 router.post('/acceptUpdate',isAdmin,AdminModule.acceptUpdate)
+router.post('/rejectionUpdate',isAdmin,AdminModule.rejectionUpdate)
 router.post('/userCreation',isAdmin,AdminModule.userCreation)
 
 module.exports = router;
